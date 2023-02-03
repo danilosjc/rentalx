@@ -1,15 +1,13 @@
 
-import { ICategoryRepository, ICreateCategoryDTO } from "../repositories/ICategoryRepository";
-
-
+import { ICategoriesRepository, ICreateCategoryDTO } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
     name: string;
     description: string;
 }
 
-class CreateCategoryServices {
-    constructor (private categoriesRepository: ICategoryRepository) {}
+class CreateCategoryUseCases {
+    constructor (private categoriesRepository: ICategoriesRepository) {}
 
     execute( { name, description}: IRequest ): void {
         const categoryAlreadyExists = this.categoriesRepository.findByName(name);
@@ -20,8 +18,7 @@ class CreateCategoryServices {
 
     this.categoriesRepository.create({name, description});
 
-    }
-    
+    } 
 }
 
-export { CreateCategoryServices }
+export { CreateCategoryUseCases }
